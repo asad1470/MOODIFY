@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import "tailwindcss";
+@theme {
+  --font-display: 'Montserrat'; 
+}
+/* Chrome, Edge, Safari */
+/* Chrome, Edge, Safari */
+::-webkit-scrollbar {
+  width: 9px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000000d7;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #4e0363;
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #6b0a87;
+}
+
+/* Firefox only */
+@supports not selector(::-webkit-scrollbar) {
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #4e0363 #000000;
+  }
+}

@@ -7,7 +7,7 @@ import {
   RiVolumeMuteFill,
 } from "@remixicon/react"
 
-// empty = play from /public/songs; set VITE_SONGS_URL later if you move songs to R2
+
 const SONGS_BASE = import.meta.env.VITE_SONGS_URL ?? ""
 
 const MusicCard = ({ song, isPlaying, onToggle }) => {
@@ -18,7 +18,7 @@ const MusicCard = ({ song, isPlaying, onToggle }) => {
   const [muted, setMuted] = useState(false)
   const [canSetVolume, setCanSetVolume] = useState(true)
 
-  // iPhones ignore audio.volume, so detect it and hide the slider there
+
   useEffect(() => {
     const test = new Audio()
     test.volume = 0.5
@@ -46,7 +46,7 @@ const MusicCard = ({ song, isPlaying, onToggle }) => {
 
   const handleSeek = (e) => {
     const audio = audioRef.current
-    if (!audio.duration) return // song hasn't loaded yet
+    if (!audio.duration) return
     const rect = e.currentTarget.getBoundingClientRect()
     audio.currentTime = ((e.clientX - rect.left) / rect.width) * audio.duration
   }
@@ -83,44 +83,17 @@ const MusicCard = ({ song, isPlaying, onToggle }) => {
 
       <div className="pointer-events-none absolute inset-0 rounded-[inherit] bg-linear-to-br from-white/30 via-transparent to-transparent opacity-60" />
 
-      {/* volume: top-right. Hover slider on desktop, always visible on touch screens */}
-      <div className="group/vol absolute right-4 top-4 z-10 flex items-center gap-2">
-        {canSetVolume && (
-          <div
-            ref={volRef}
-            onPointerDown={(e) => {
-              e.currentTarget.setPointerCapture(e.pointerId)
-              setVolumeFromPointer(e)
-            }}
-            onPointerMove={(e) => e.buttons === 1 && setVolumeFromPointer(e)}
-            className="flex h-6 w-0 cursor-pointer touch-none items-center overflow-hidden opacity-0
-              transition-all duration-300
-              group-hover/vol:w-20 group-hover/vol:opacity-100
-              [@media(pointer:coarse)]:w-24 [@media(pointer:coarse)]:opacity-100"
-          >
-            <div className="h-1.5 w-full rounded-full bg-white/25">
-              <div
-                className="h-full rounded-full bg-white"
-                style={{ width: `${isSilent ? 0 : volume * 100}%` }}
-              />
-            </div>
-          </div>
-        )}
-
-        <button
-          type="button"
-          onClick={() => setMuted(!muted)}
-          className="cursor-pointer text-white/70 transition hover:text-white"
-        >
-          <VolumeIcon size={22} />
-        </button>
+      
+      <div className="relative px-2 pt-2 text-center">
+        <h1 className="line-clamp-2 font-display text-lg font-semibold leading-tight text-white sm:text-xl">
+  {song.title}
+</h1>
+<h3 className="truncate font-display text-sm text-white/70 sm:text-sm">
+  {song.artist}
+</h3>
       </div>
 
-      <div className="relative px-6 pt-4 text-center">
-        <h1 className="font-display text-xl font-semibold text-white">{song.title}</h1>
-        <h3 className="font-display text-sm text-white/70">{song.artist}</h3>
-      </div>
-
+    
       <button
         type="button"
         onClick={onToggle}
@@ -132,6 +105,41 @@ const MusicCard = ({ song, isPlaying, onToggle }) => {
         {isPlaying ? <RiPauseFill size={32} /> : <RiPlayFill size={32} />}
       </button>
 
+      <div className="relative -mb-[30px] flex w-full justify-end">
+        <div className="group/vol flex items-center gap-2">
+          {canSetVolume && (
+            <div
+              ref={volRef}
+              onPointerDown={(e) => {
+                e.currentTarget.setPointerCapture(e.pointerId)
+                setVolumeFromPointer(e)
+              }}
+              onPointerMove={(e) => e.buttons === 1 && setVolumeFromPointer(e)}
+              className="flex h-6 w-0 cursor-pointer touch-none items-center overflow-hidden opacity-0
+                transition-all duration-300
+                group-hover/vol:w-24 group-hover/vol:opacity-100
+                [@media(pointer:coarse)]:w-24 [@media(pointer:coarse)]:opacity-100"
+            >
+              <div className="h-1.5 w-full rounded-full bg-white/25">
+                <div
+                  className="h-full rounded-full bg-white"
+                  style={{ width: `${isSilent ? 0 : volume * 100}%` }}
+                />
+              </div>
+            </div>
+          )}
+
+          <button
+            type="button"
+            onClick={() => setMuted(!muted)}
+            className="cursor-pointer text-white/70 transition hover:text-white"
+          >
+            <VolumeIcon size={20} />
+          </button>
+        </div>
+      </div>
+
+      {/* progress bar */}
       <div
         onClick={handleSeek}
         className="relative h-2 w-full cursor-pointer overflow-hidden rounded-full bg-white/20"

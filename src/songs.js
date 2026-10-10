@@ -34,7 +34,7 @@ sad: [
   { title: "Jaadu Teri Nazar", artist: "Udit Narayan", src: "/songs/nostalgic/Jaadu Teri Nazar.mp3" },
   { title: "Mere Mehboob Qayamat Hogi", artist: "Kishore Kumar", src: "/songs/nostalgic/Mere Mehboob Qayamat Hogi.mp3" },
   { title: "Tere Naam", artist: "Kishore Kumar", src: "/songs/nostalgic/Tere Naam.mp3"  },
-  { title: "Dil Ne Yeh Kaha Hain Dil Se", artist: "Sonu Nigam", src: "/songs/nostalgic/Dil Ne Yeh Kaha Hain Dil Se  hai t.mp3" },
+  { title: "Dil Ne Yeh Kaha Hain Dil Se", artist: "Sonu Nigam", src: "/songs/nostalgic/Dil Ne Yeh Kaha Hain Dil Se .mp3" },
   { title: "Ho Gaya Hai Tujhko", artist: "Udit Narayan", src: "/songs/nostalgic/Ho Gaya Hai Tujhko.mp3" },
 ],
 

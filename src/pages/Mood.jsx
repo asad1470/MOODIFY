@@ -34,10 +34,12 @@ const Mood = () => {
         <Navbar mood={mood} />
 
         <div className="p-10 text-white">
-          <h1 className="mt-4 text-5xl font-bold capitalize">{mood.name}</h1>
-          <p className="mt-4 text-white/70 text-md">
-            {mood.tagline}.
-          </p>
+       <h1 className="mt-2 text-3xl font-bold capitalize sm:mt-4 sm:text-5xl">
+  {mood.name}
+</h1>
+<p className="mt-2 text-sm text-white/70 sm:mt-4 sm:text-base">
+  {mood.tagline}
+</p>
         </div>
 
         <div className="grid  sm:grid-cols-[repeat(2,280px)] lg:grid-cols-[repeat(3,280px)] justify-center gap-8 mt-3 ">

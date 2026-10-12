@@ -15,7 +15,7 @@ const Favorites = () => {
 
   return (
     <div
-      className="relative min-h-screen bg-cover bg-center bg-no-repeat bg-fixed"
+      className="relative min-h-screen bg-cover bg-center bg-no-repeat bg-scroll lg:bg-fixed"
       style={{ backgroundImage: "url('/bg5.jpg')" }}
     >
       <div className="absolute inset-0 bg-black/40" />
@@ -23,9 +23,9 @@ const Favorites = () => {
       <div className="relative z-10">
         <Navbar />
 
-        <div className="p-10 text-white">
-          <h1 className="text-5xl font-bold">Favorites</h1>
-          <p className="mt-4 text-lg text-white/80">
+        <div className="px-5 py-8 text-white sm:p-10">
+          <h1 className="text-3xl font-bold sm:text-5xl">Favorites</h1>
+          <p className="mt-4 text-base text-white/80 sm:text-lg">
             Every song, every mood, all in one place.
           </p>
         </div>

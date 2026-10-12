@@ -42,7 +42,7 @@ const Login = () => {
 
   return (
     <div
-      className="relative min-h-screen bg-cover bg-center bg-fixed"
+      className="relative min-h-screen bg-cover bg-center bg-scroll lg:bg-fixed"
       style={{ backgroundImage: "url('/bg5.jpg')" }}
     >
       <div className="absolute inset-0 bg-black/50" />

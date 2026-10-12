@@ -20,7 +20,13 @@ const Navbar = ({ mood }) => {
   const [query, setQuery] = useState("")
   const [open, setOpen] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(() => window.scrollY > 0)
 
+  useEffect(() => {
+    const onScroll = () => setIsScrolled(window.scrollY > 0)
+    window.addEventListener("scroll", onScroll, { passive: true })
+    return () => window.removeEventListener("scroll", onScroll)
+  }, [])
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : ""
@@ -195,7 +201,11 @@ const Navbar = ({ mood }) => {
   return (
     <div
       style={{ "--accent": accent }}
-      className="relative flex items-center justify-between bg-transparent px-4 py-4 lg:px-6 lg:py-5"
+      className={`sticky top-0 z-50 flex items-center justify-between bg-transparent px-4 py-4 transition-[backdrop-filter,box-shadow] duration-300 lg:px-6 lg:py-5 ${
+        isScrolled
+          ? "backdrop-blur-2xl shadow-[0_8px_20px_rgba(191,137,206,0.2)]"
+          : "backdrop-blur-none shadow-none"
+      }`}
     >
      
       <div className="flex items-center gap-3">

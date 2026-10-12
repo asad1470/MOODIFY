@@ -25,7 +25,7 @@ const Mood = () => {
 
   return (
     <main
-      className="relative min-h-screen bg-cover bg-center bg-no-repeat bg-fixed"
+      className="relative min-h-screen bg-cover bg-center bg-no-repeat bg-scroll lg:bg-fixed"
       style={{ backgroundImage: `url('${mood.image}')` }}
     >
       <div className="absolute inset-0 bg-black/50" />
@@ -33,7 +33,7 @@ const Mood = () => {
       <div className="relative z-10">
         <Navbar mood={mood} />
 
-        <div className="p-10 text-white">
+        <div className="px-5 py-8 text-white sm:p-10">
        <h1 className="mt-2 text-3xl font-bold capitalize sm:mt-4 sm:text-5xl">
   {mood.name}
 </h1>

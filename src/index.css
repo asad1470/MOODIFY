@@ -3,6 +3,14 @@
 @theme {
   --font-display: 'Montserrat'; 
 }
+
+html,
+body,
+#root {
+  min-height: 100%;
+  background-color: #090712;
+}
+
 /* Chrome, Edge, Safari */
 /* Chrome, Edge, Safari */
 ::-webkit-scrollbar {

@@ -28,7 +28,7 @@ const glass =
 const About = () => {
   return (
     <div
-      className="relative min-h-screen bg-cover bg-center bg-no-repeat bg-fixed"
+      className="relative min-h-screen bg-cover bg-center bg-no-repeat bg-scroll lg:bg-fixed"
       style={{ backgroundImage: "url('/bg5.jpg')" }}
     >
       <div className="absolute inset-0 bg-black/50" />
@@ -47,7 +47,7 @@ const About = () => {
           </p>
         </section>
 
-        <section className="mx-auto grid max-w-5xl gap-6 px-6 sm:grid-cols-3 mt-5">
+        <section className="mx-auto grid max-w-5xl gap-6 px-6 sm:grid-cols-2 lg:grid-cols-3 mt-5">
           {features.map((f) => (
             <div
               key={f.title}

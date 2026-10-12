@@ -69,9 +69,10 @@ const MusicCard = ({ song, isPlaying, onToggle }) => {
     <div
       className="group relative flex h-70 w-70 flex-col items-center justify-between overflow-hidden
         rounded-3xl border border-white/25 bg-white/10 p-5
-        backdrop-blur-2xl backdrop-saturate-150
-        shadow-[inset_0_1px_1px_rgba(255,255,255,0.6),inset_0_-1px_1px_rgba(255,255,255,0.15),0_8px_32px_rgba(0,0,0,0.25)]
-        transition-all duration-500 hover:-translate-y-2 hover:scale-105 hover:bg-white/15"
+        backdrop-blur-sm sm:backdrop-blur-2xl sm:backdrop-saturate-150
+        shadow-lg sm:shadow-[inset_0_1px_1px_rgba(255,255,255,0.6),inset_0_-1px_1px_rgba(255,255,255,0.15),0_8px_32px_rgba(0,0,0,0.25)]
+        transition-colors duration-300 sm:transition-all sm:duration-500
+        sm:hover:-translate-y-2 sm:hover:scale-105 sm:hover:bg-white/15"
     >
       <audio
         ref={audioRef}
@@ -118,7 +119,7 @@ const MusicCard = ({ song, isPlaying, onToggle }) => {
               className="flex h-6 w-0 cursor-pointer touch-none items-center overflow-hidden opacity-0
                 transition-all duration-300
                 group-hover/vol:w-24 group-hover/vol:opacity-100
-                [@media(pointer:coarse)]:w-24 [@media(pointer:coarse)]:opacity-100"
+                [@media(pointer:coarse)]:w-24 pointer-coarse:opacity-100"
             >
               <div className="h-1.5 w-full rounded-full bg-white/25">
                 <div

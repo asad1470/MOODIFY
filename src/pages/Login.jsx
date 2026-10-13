@@ -2,6 +2,7 @@ import { useState } from "react"
 import { Link, Navigate, useNavigate } from "react-router-dom"
 import { useAuth } from "../AuthContext"
 import Navbar from "../components/Navbar"
+import Credit from "../components/Credit"
 
 const errors = {
   "auth/invalid-credential": "Wrong email or password.",
@@ -106,6 +107,7 @@ const Login = () => {
           </form>
         </div>
       </div>
+      <Credit />
     </div>
   )
 }

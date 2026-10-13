@@ -2,7 +2,6 @@ import React, { useState } from "react"
 import Navbar from "../components/Navbar"
 import MusicCard from "../components/MusicCard"
 import songs from "../songs"
-import Credit from "../components/Credit"
 const lists = Object.values(songs)
 const longest = Math.max(...lists.map((l) => l.length))
 

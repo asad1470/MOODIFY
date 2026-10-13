@@ -47,8 +47,9 @@ const MusicCard = ({ song, isPlaying, onToggle }) => {
   const handleSeek = (e) => {
     const audio = audioRef.current
     if (!audio.duration) return
-    const rect = e.currentTarget.getBoundingClientRect()
-    audio.currentTime = ((e.clientX - rect.left) / rect.width) * audio.duration
+    const nextProgress = Number(e.currentTarget.value)
+    setProgress(nextProgress)
+    audio.currentTime = (nextProgress / 100) * audio.duration
   }
 
   const setVolumeFromPointer = (e) => {
@@ -141,11 +142,20 @@ const MusicCard = ({ song, isPlaying, onToggle }) => {
       </div>
 
       {/* progress bar */}
-      <div
-        onClick={handleSeek}
-        className="relative h-2 w-full cursor-pointer overflow-hidden rounded-full bg-white/20"
-      >
-        <div className="h-full rounded-full bg-white" style={{ width: `${progress}%` }} />
+      <div className="relative flex h-6 w-full items-center">
+        <div className="absolute inset-x-0 h-1.5 overflow-hidden rounded-full bg-white/20">
+          <div className="h-full rounded-full bg-white" style={{ width: `${progress}%` }} />
+        </div>
+        <input
+          type="range"
+          min="0"
+          max="100"
+          step="0.1"
+          value={progress}
+          onChange={handleSeek}
+          aria-label={`Seek ${song.title}`}
+          className="seek-slider relative z-10 h-full w-full cursor-pointer touch-none appearance-none bg-transparent"
+        />
       </div>
     </div>
   )

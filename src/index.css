@@ -22,18 +22,48 @@ body,
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #4e0363;
+  background: var(--scrollbar-color, #4e0363);
   border-radius: 999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #6b0a87;
+  background: color-mix(in srgb, var(--scrollbar-color, #4e0363) 80%, white);
 }
 
 /* Firefox only */
 @supports not selector(::-webkit-scrollbar) {
   * {
     scrollbar-width: thin;
-    scrollbar-color: #4e0363 #000000;
+    scrollbar-color: var(--scrollbar-color, #4e0363) #000000;
   }
+}
+
+.seek-slider::-webkit-slider-runnable-track {
+  height: 6px;
+  background: transparent;
+}
+
+.seek-slider::-webkit-slider-thumb {
+  width: 14px;
+  height: 14px;
+  appearance: none;
+  margin-top: -4px;
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.45);
+}
+
+.seek-slider::-moz-range-track {
+  height: 6px;
+  background: transparent;
+}
+
+.seek-slider::-moz-range-thumb {
+  width: 10px;
+  height: 10px;
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.45);
 }

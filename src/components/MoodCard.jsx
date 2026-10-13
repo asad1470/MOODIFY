@@ -42,7 +42,7 @@ const MoodCard = ({ mood }) => {
       </div>
 
       <div className="relative z-10 flex flex-col items-center">
-        <span className="mb-3 flex h-16 w-16 items-center justify-center rounded-2xl border border-fuchsia-100/20 bg-[#211633]/70 text-4xl shadow-[0_0_24px_rgba(168,85,247,0.15)] transition duration-300 group-hover:rotate-3 group-hover:scale-105">
+        <span className="mb-3 flex h-12 w-12 items-center justify-center rounded-xl border border-fuchsia-100/20 bg-[#211633]/70 text-xl shadow-[0_0_24px_rgba(168,85,247,0.15)] transition duration-300 group-hover:rotate-3 group-hover:scale-105 lg:h-16 lg:w-16 lg:rounded-2xl lg:text-3xl">
           {mood.emoji}
         </span>
         <h2 className="font-display text-base font-semibold tracking-wide sm:text-lg">

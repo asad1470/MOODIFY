@@ -9,12 +9,13 @@ const MoodCard = ({ mood }) => {
       type="button"
       aria-label={`Explore ${mood.name} mood`}
       onClick={() => navigate(`/mood/${mood.value}`)}
+      style={{ "--mood-glow": `${mood.iconColor}66` }}
       className={`group relative isolate flex aspect-square w-full max-w-56 min-w-0
         flex-col items-center justify-between overflow-hidden
         rounded-[2rem_1rem_2rem_1rem] border border-violet-100/20
         bg-[#100b20]/75 p-4 text-center text-white shadow-lg backdrop-blur-sm
         transition duration-300 hover:-translate-y-1 hover:border-fuchsia-100/35
-        hover:shadow-2xl active:scale-[0.98] cursor-pointer`}
+        hover:shadow-[0_0_28px_var(--mood-glow)] active:scale-[0.98] cursor-pointer`}
     >
       <div
         aria-hidden="true"

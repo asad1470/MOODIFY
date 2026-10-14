@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import { useState } from "react"
 import Navbar from "../components/Navbar"
 import MusicCard from "../components/MusicCard"
 import songs from "../songs"
@@ -7,14 +7,13 @@ const longest = Math.max(...lists.map((l) => l.length))
 
 const allSongs = Array.from({ length: longest })
   .flatMap((_, i) => lists.map((l) => l[i]).filter(Boolean))
-  .slice(0, 12)  
 
 const Favorites = () => {
   const [playing, setPlaying] = useState(null)
 
   return (
     <div
-      className="relative min-h-screen bg-cover bg-center bg-no-repeat bg-scroll lg:bg-fixed"
+      className="relative min-h-screen overflow-x-clip bg-cover bg-center bg-no-repeat bg-scroll lg:bg-fixed"
       style={{ backgroundImage: "url('/bg5.jpg')" }}
     >
       <div className="absolute inset-0 bg-black/40" />
@@ -29,7 +28,7 @@ const Favorites = () => {
           </p>
         </div>
 
-        <div className="mt-3 grid justify-center gap-8 pb-20 sm:grid-cols-[repeat(2,280px)] lg:grid-cols-[repeat(3,280px)]">
+        <div className="grid justify-center gap-8 pb-20 sm:grid-cols-[repeat(2,280px)] lg:grid-cols-[repeat(3,280px)] mt-6.5">
           {allSongs.map((song) => {
             const key = `${song.title}-${song.artist}`
             return (

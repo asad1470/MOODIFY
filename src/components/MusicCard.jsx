@@ -9,21 +9,20 @@ import {
 
 
 const SONGS_BASE = import.meta.env.VITE_SONGS_URL ?? ""
+const canSetVolume = (() => {
+  const audio = document.createElement("audio")
+  audio.volume = 0.5
+  return audio.volume === 0.5
+})()
 
 const MusicCard = ({ song, isPlaying, onToggle }) => {
+  const title = song.title.trim()
+  const artist = song.artist.trim()
   const audioRef = useRef(null)
   const volRef = useRef(null)
   const [progress, setProgress] = useState(0)
   const [volume, setVolume] = useState(0.3)
   const [muted, setMuted] = useState(false)
-  const [canSetVolume, setCanSetVolume] = useState(true)
-
-
-  useEffect(() => {
-    const test = new Audio()
-    test.volume = 0.5
-    setCanSetVolume(test.volume === 0.5)
-  }, [])
 
   useEffect(() => {
     const audio = audioRef.current
@@ -54,6 +53,7 @@ const MusicCard = ({ song, isPlaying, onToggle }) => {
 
   const setVolumeFromPointer = (e) => {
     const rect = volRef.current.getBoundingClientRect()
+    if (!rect.width) return
     const v = Math.min(1, Math.max(0, (e.clientX - rect.left) / rect.width))
     setVolume(v)
     setMuted(v === 0)
@@ -68,12 +68,12 @@ const MusicCard = ({ song, isPlaying, onToggle }) => {
 
   return (
     <div
-      className="group relative flex h-70 w-70 flex-col items-center justify-between overflow-hidden
-        rounded-3xl border border-white/25 bg-white/10 p-5
+      className="group relative z-0 flex h-70 w-70 flex-col items-center justify-between overflow-hidden
+        rounded-3xl border border-white/15 bg-white/10 p-5
         backdrop-blur-sm sm:backdrop-blur-2xl sm:backdrop-saturate-150
-        shadow-lg sm:shadow-[inset_0_1px_1px_rgba(255,255,255,0.6),inset_0_-1px_1px_rgba(255,255,255,0.15),0_8px_32px_rgba(0,0,0,0.25)]
+        shadow-lg sm:shadow-[0_8px_32px_rgba(0,0,0,0.25)]
         transition-colors duration-300 sm:transition-all sm:duration-500
-        sm:hover:-translate-y-2 sm:hover:scale-105 sm:hover:bg-white/15"
+        sm:hover:-translate-y-2 sm:hover:scale-105 sm:hover:bg-white/5"
     >
       <audio
         ref={audioRef}
@@ -83,16 +83,13 @@ const MusicCard = ({ song, isPlaying, onToggle }) => {
         onEnded={onToggle}
       />
 
-      <div className="pointer-events-none absolute inset-0 rounded-[inherit] bg-linear-to-br from-white/30 via-transparent to-transparent opacity-60" />
-
-      
       <div className="relative px-2 pt-2 text-center">
-        <h1 className="line-clamp-2 font-display text-lg font-semibold leading-tight text-white sm:text-xl">
-  {song.title}
-</h1>
-<h3 className="truncate font-display text-sm text-white/70 sm:text-sm">
-  {song.artist}
-</h3>
+        <h2 className="line-clamp-2 font-display text-lg font-semibold leading-tight text-white sm:text-xl">
+          {title}
+        </h2>
+        <p className="truncate font-display text-sm text-white/70 sm:text-sm">
+          {artist}
+        </p>
       </div>
 
     
@@ -120,7 +117,7 @@ const MusicCard = ({ song, isPlaying, onToggle }) => {
               className="flex h-6 w-0 cursor-pointer touch-none items-center overflow-hidden opacity-0
                 transition-all duration-300
                 group-hover/vol:w-24 group-hover/vol:opacity-100
-                [@media(pointer:coarse)]:w-24 pointer-coarse:opacity-100"
+                [@media(pointer:coarse)]:w-24 [@media(pointer:coarse)]:opacity-100"
             >
               <div className="h-1.5 w-full rounded-full bg-white/25">
                 <div
@@ -153,7 +150,7 @@ const MusicCard = ({ song, isPlaying, onToggle }) => {
           step="0.1"
           value={progress}
           onChange={handleSeek}
-          aria-label={`Seek ${song.title}`}
+          aria-label={`Seek ${title}`}
           className="seek-slider relative z-10 h-full w-full cursor-pointer touch-none appearance-none bg-transparent"
         />
       </div>

@@ -25,7 +25,7 @@ const Mood = () => {
 
   return (
     <main
-      className="relative min-h-screen bg-cover bg-center bg-no-repeat bg-scroll lg:bg-fixed"
+      className="relative min-h-screen overflow-x-clip bg-cover bg-center bg-no-repeat bg-scroll lg:bg-fixed"
       style={{ backgroundImage: `url('${mood.image}')` }}
     >
       <div className="absolute inset-0 bg-black/50" />

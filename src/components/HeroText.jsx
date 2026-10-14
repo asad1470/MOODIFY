@@ -1,5 +1,3 @@
-import React from 'react'
-
 export const HeroText = () => {
   return (
     <div className="mt-12 flex flex-col items-center justify-center gap-4 px-4 text-center sm:mt-12 sm:gap-5 lg:mt-15">

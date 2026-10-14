@@ -8,7 +8,7 @@ import {
 } from "@remixicon/react"
 import { Link, useNavigate } from "react-router-dom"
 import moods from "../moods"
-import { useAuth } from "../AuthContext"
+import { useAuth } from "../useAuth"
 import Credit from "./Credit"
 
 const links = [
@@ -89,7 +89,7 @@ const Navbar = ({ mood }) => {
         onBlur={() => setSearchOpen(false)}
         className="w-full rounded-full border border-white/20 bg-white/10 px-5 py-2
           font-display text-white placeholder-gray-400 backdrop-blur-md outline-none transition
-          focus:border-(color:--accent) focus:ring-2 focus:ring-(color:--accent) lg:w-56"
+          focus:border-(--accent) focus:ring-2 focus:ring-(--accent) lg:w-56"
         type="text"
         placeholder="Search by mood"
         aria-label="Search by mood"
@@ -135,7 +135,7 @@ const Navbar = ({ mood }) => {
         aria-label="Close menu"
         tabIndex={menuOpen ? 0 : -1}
         onClick={() => setMenuOpen(false)}
-        className={`fixed inset-0 z-[90] bg-black/50 backdrop-blur-sm transition-opacity duration-300 ${
+        className={`fixed inset-0 z-90 bg-black/50 backdrop-blur-sm transition-opacity duration-300 ${
           menuOpen ? "opacity-100" : "pointer-events-none opacity-0"
         }`}
       />
@@ -179,7 +179,7 @@ const Navbar = ({ mood }) => {
               to={link.to}
               onClick={() => setMenuOpen(false)}
               className="rounded-xl px-4 py-2 font-display text-lg text-white/90 transition
-                hover:bg-white/10 hover:text-(color:--accent)"
+                hover:bg-white/10 hover:text-(--accent)"
             >
               {link.label}
             </Link>
@@ -195,7 +195,7 @@ const Navbar = ({ mood }) => {
             onClick={() => setMobileMoodsOpen((value) => !value)}
             className="flex w-full items-center justify-between rounded-xl px-4  text-left
               font-display text-lg text-white/90 transition
-              hover:bg-white/10  hover:text-(color:--accent)"
+              hover:bg-white/10  hover:text-(--accent)"
           >
             <span>Moods</span>
             <RiArrowDownSLine
@@ -279,7 +279,7 @@ const Navbar = ({ mood }) => {
           onClick={() => setMenuOpen(true)}
           aria-label="Open menu"
           aria-expanded={menuOpen}
-          className="cursor-pointer text-white transition hover:text-(color:--accent) lg:hidden"
+          className="cursor-pointer text-white transition hover:text-(--accent) lg:hidden"
         >
           <RiMenuLine size={30} />
         </button>
@@ -300,7 +300,7 @@ const Navbar = ({ mood }) => {
           <Link
             key={link.to}
             to={link.to}
-            className="cursor-pointer font-display text-white transition-colors duration-300 hover:text-(color:--accent)"
+            className="cursor-pointer font-display text-white transition-colors duration-300 hover:text-(--accent)"
           >
             {link.label}
           </Link>
@@ -319,14 +319,14 @@ const Navbar = ({ mood }) => {
             aria-expanded={moodsOpen}
             aria-controls="desktop-moods-menu"
             onClick={() => setMoodsOpen((value) => !value)}
-            className="flex cursor-pointer items-center gap-1 font-display text-white transition-colors duration-300 hover:text-(color:--accent)"
+            className="flex cursor-pointer items-center gap-1 font-display text-white transition-colors duration-300 hover:text-(--accent)"
           >
             Moods <RiArrowDownSLine size={18} />
           </button>
           {moodsOpen && (
             <div
               id="desktop-moods-menu"
-              className={`absolute left-1/2 top-full z-[60] w-[min(34rem,90vw)] -translate-x-1/2 overflow-hidden rounded-2xl
+              className={`absolute left-1/2 top-full z-60 w-[min(34rem,90vw)] -translate-x-1/2 overflow-hidden rounded-2xl
                 border border-white/15 bg-linear-to-r ${drawerGradient} p-4
                 shadow-[0_16px_48px_rgba(0,0,0,0.5)]`}
             >
@@ -340,8 +340,9 @@ const Navbar = ({ mood }) => {
                     key={item.value}
                     type="button"
                     onClick={() => goToMood(item)}
+                    style={{ "--mood-hover-bg": `${item.iconColor}22` }}
                     className="flex items-center gap-3 rounded-xl border border-white/5 px-3 py-3 text-left
-                      font-display text-sm text-white/85 transition hover:border-white/15 hover:bg-white/10 hover:text-white"
+                      font-display text-sm text-white/85 transition hover:border-white/15 hover:bg-(--mood-hover-bg) hover:text-white"
                   >
                     <span aria-hidden="true" className="text-lg">{item.emoji}</span>
                     <span>{item.name}</span>
@@ -356,7 +357,7 @@ const Navbar = ({ mood }) => {
       <div className="hidden items-center gap-6 lg:flex">
         {searchBox}
         {loading ? (
-          <div className="h-[30px] w-[30px]" aria-hidden="true" />
+          <div className="h-7.5 w-7.5" aria-hidden="true" />
         ) : user ? (
           <div className="flex items-center gap-3">
             <span className="font-display text-white/80">
@@ -365,7 +366,7 @@ const Navbar = ({ mood }) => {
             <button
               type="button"
               onClick={logout}
-              className="cursor-pointer font-display text-sm text-white/70 transition-colors hover:text-(color:--accent)"
+              className="cursor-pointer font-display text-sm text-white/70 transition-colors hover:text-(--accent)"
             >
               Logout
             </button>

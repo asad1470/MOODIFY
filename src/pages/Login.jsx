@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { Link, Navigate, useNavigate } from "react-router-dom"
-import { useAuth } from "../AuthContext"
+import { useAuth } from "../useAuth"
 import Navbar from "../components/Navbar"
 import Credit from "../components/Credit"
 

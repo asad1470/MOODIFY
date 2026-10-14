@@ -1,4 +1,3 @@
-import MoodCard from "./components/MoodCard"
 import Home from "./pages/Home"
 import Mood from "./pages/Mood"
 import { Routes, Route, Navigate } from "react-router-dom"
@@ -31,6 +30,7 @@ const App = () => {
       <Route path="/login"
        element={<Login />}
         />
+      <Route path="*" element={<Navigate to="/" replace />} />
      </Routes>
 
 
